@@ -20,3 +20,9 @@ python pacman.py -l testSearch -p AStarFoodSearchAgent
 python pacman.py -l trickySearch -p AStarFoodSearchAgent
 python pacman.py -l bigSearch -p ClosestDotSearchAgent -z .5 
 python pacman.py -l bigSearch -p ApproximateSearchAgent -z .5 -q 
+
+Test stuff
+BFS
+    -l mediumMaze -p SearchAgent
+DFS
+    -l bigMaze -p SearchAgent -a fn=bfs -z .5 --frameTime 0
