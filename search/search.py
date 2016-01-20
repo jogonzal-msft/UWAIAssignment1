@@ -19,6 +19,13 @@ Pacman agents (in searchAgents.py).
 
 import util
 
+def nullHeuristic(state, problem=None):
+    """
+    A heuristic function estimates the cost from the current state to the nearest
+    goal in the provided SearchProblem.  This heuristic is trivial.
+    """
+    return 0
+
 class StateWithHistory:
     "A container class for solving DFS/etc problems."
     def __init__(self, movementHistory, lastCoordinates, accumulatedCost):
@@ -108,7 +115,7 @@ def GetStateWithHistoryFromState(currentState, newState):
     return StateWithHistory(movementHistory, coordinates, accumulatedCost);
 
 
-def SolveUsingDataStructure(problem, dataStructure, withCosts):
+def SolveUsingDataStructure(problem, dataStructure, withCosts, heuristic=nullHeuristic):
 
     startState = problem.getStartState();
     # Check if we're done
@@ -127,7 +134,7 @@ def SolveUsingDataStructure(problem, dataStructure, withCosts):
             if (not withCosts):
                 dataStructure.push(successorStateWithHistory);
             else:
-                dataStructure.push(successorStateWithHistory, successorStateWithHistory.getAccumulatedCost());
+                dataStructure.push(successorStateWithHistory, successorStateWithHistory.getAccumulatedCost() + heuristic(successorStateWithHistory.getLastCoordinates(), problem));
 
 
     while not dataStructure.isEmpty():
@@ -149,7 +156,7 @@ def SolveUsingDataStructure(problem, dataStructure, withCosts):
                 if (not withCosts):
                     dataStructure.push(successorStateWithHistory);
                 else:
-                    dataStructure.push(successorStateWithHistory, successorStateWithHistory.getAccumulatedCost());
+                    dataStructure.push(successorStateWithHistory, successorStateWithHistory.getAccumulatedCost() + heuristic(successorStateWithHistory.getLastCoordinates(), problem));
 
     # Should never get here unless there is no solution!
     return [];
@@ -173,17 +180,9 @@ def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     return SolveUsingDataStructure(problem, util.PriorityQueue(), True)
 
-def nullHeuristic(state, problem=None):
-    """
-    A heuristic function estimates the cost from the current state to the nearest
-    goal in the provided SearchProblem.  This heuristic is trivial.
-    """
-    return 0
-
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    return SolveUsingDataStructure(problem, util.PriorityQueue(), True, heuristic);
 
 
 # Abbreviations
