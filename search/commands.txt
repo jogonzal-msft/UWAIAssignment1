@@ -26,3 +26,7 @@ BFS
     -l mediumMaze -p SearchAgent
 DFS
     -l bigMaze -p SearchAgent -a fn=bfs -z .5 --frameTime 0
+UCS
+    -l mediumMaze -p SearchAgent -a fn=ucs
+    -l mediumDottedMaze -p StayEastSearchAgent
+    -l mediumScaryMaze -p StayWestSearchAgent

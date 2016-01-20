@@ -21,10 +21,12 @@ import util
 
 class StateWithHistory:
     "A container class for solving DFS/etc problems."
-    def __init__(self, movementHistory, lastCoordinates):
+    def __init__(self, movementHistory, lastCoordinates, accumulatedCost):
         self.movementHistory = movementHistory;
         self.lastCoordinates = lastCoordinates;
         self.hashableState = str(self.lastCoordinates[0]) + "-" + str(self.lastCoordinates[1]);
+        self.accumulatedCost = accumulatedCost;
+
     def getMovementHistory(self):
         return self.movementHistory;
 
@@ -33,6 +35,9 @@ class StateWithHistory:
 
     def getHashableState(self):
         return self.hashableState;
+
+    def getAccumulatedCost(self):
+        return self.accumulatedCost;
 
 class SearchProblem:
     """
@@ -91,16 +96,19 @@ def tinyMazeSearch(problem):
 def GetStateWithHistoryFromState(currentState, newState):
     if (currentState == None):
         movementHistory = [];
+        accumulatedCost = 0;
     else:
         movementHistory = list(currentState.getMovementHistory());
+        accumulatedCost = currentState.getAccumulatedCost();
 
     movementHistory.append(newState[1]);
     coordinates = newState[0];
+    accumulatedCost = accumulatedCost + newState[2];
 
-    return StateWithHistory(movementHistory, coordinates);
+    return StateWithHistory(movementHistory, coordinates, accumulatedCost);
 
 
-def SolveUsingDataStructure(problem, dataStructure):
+def SolveUsingDataStructure(problem, dataStructure, withCosts):
 
     startState = problem.getStartState();
     # Check if we're done
@@ -114,7 +122,10 @@ def SolveUsingDataStructure(problem, dataStructure):
     for successor in firstSuccessors:
         if (not successor in l):
             successorStateWithHistory = GetStateWithHistoryFromState(None, successor);
-            dataStructure.push(successorStateWithHistory);
+            if (not withCosts):
+                dataStructure.push(successorStateWithHistory);
+            else:
+                dataStructure.push(successorStateWithHistory, successorStateWithHistory.getAccumulatedCost());
             l.add(successorStateWithHistory.getHashableState());
 
     l.add(str(startState[0]) +  "-" + str(startState[1]));
@@ -132,7 +143,10 @@ def SolveUsingDataStructure(problem, dataStructure):
             successorStateWithHistory = GetStateWithHistoryFromState(currentState, successor);
             hashableState = successorStateWithHistory.getHashableState()
             if (not hashableState in l):
-                dataStructure.push(successorStateWithHistory);
+                if (not withCosts):
+                    dataStructure.push(successorStateWithHistory);
+                else:
+                    dataStructure.push(successorStateWithHistory, successorStateWithHistory.getAccumulatedCost());
                 l.add(hashableState);
 
     # Should never get here unless there is no solution!
@@ -147,17 +161,15 @@ def depthFirstSearch(problem):
     goal. Make sure to implement a graph search algorithm.
 
     """
-    return SolveUsingDataStructure(problem, util.Stack());
+    return SolveUsingDataStructure(problem, util.Stack(), False);
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
-    "*** YOUR CODE HERE ***"
-    return SolveUsingDataStructure(problem, util.Queue());
+    return SolveUsingDataStructure(problem, util.Queue(), False);
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    return SolveUsingDataStructure(problem, util.PriorityQueue(), True)
 
 def nullHeuristic(state, problem=None):
     """
