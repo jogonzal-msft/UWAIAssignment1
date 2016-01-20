@@ -266,6 +266,22 @@ def euclideanHeuristic(position, problem, info={}):
 # This portion is incomplete.  Time to write code!  #
 #####################################################
 
+def GetCornerStateForCorner(startingGameState, corner):
+    return startingGameState.hasFood(corner[0], corner[1]);
+
+
+def GetNewMinifiedStateWithNewPosition(pastMinifiedState, newPosition, corners):
+    # Check collisions on corners
+    cornerFoods = [True, True, True, True];
+    for i in range(0, 4):
+        cornerState = pastMinifiedState[1][i];
+        cornerPosition = corners[i];
+        if((not cornerState) or (cornerPosition[0] == newPosition[0] and cornerPosition[1] == newPosition[1])):
+            cornerFoods[i] = False;
+
+    return (newPosition, (cornerFoods[0], cornerFoods[1], cornerFoods[2], cornerFoods[3]));
+
+
 class CornersProblem(search.SearchProblem):
     """
     This search problem finds paths through all four corners of a layout.
@@ -287,22 +303,26 @@ class CornersProblem(search.SearchProblem):
         self._expanded = 0 # DO NOT CHANGE; Number of search nodes expanded
         # Please add any code here which you would like to use
         # in initializing the problem
-        "*** YOUR CODE HERE ***"
+
+        self.startingGameState = startingGameState;
 
     def getStartState(self):
         """
         Returns the start state (in your state space, not the full Pacman state
         space)
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
 
+        cornersState = (GetCornerStateForCorner(self.startingGameState, self.corners[0]), GetCornerStateForCorner(self.startingGameState, self.corners[1]), GetCornerStateForCorner(self.startingGameState, self.corners[2]), GetCornerStateForCorner(self.startingGameState, self.corners[3]))
+        return (self.startingPosition, cornersState);
     def isGoalState(self, state):
         """
         Returns whether this search state is a goal state of the problem.
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        for corner in state[1]:
+            if corner:
+                return False;
+
+        return True;
 
     def getSuccessors(self, state):
         """
@@ -315,19 +335,22 @@ class CornersProblem(search.SearchProblem):
             is the incremental cost of expanding to that successor
         """
 
-        successors = []
+        successors = [];
+        currentPosition = state[0];
+        x = currentPosition[0];
+        y = currentPosition[1];
         for action in [Directions.NORTH, Directions.SOUTH, Directions.EAST, Directions.WEST]:
             # Add a successor state to the successor list if the action is legal
-            # Here's a code snippet for figuring out whether a new position hits a wall:
-            #   x,y = currentPosition
-            #   dx, dy = Actions.directionToVector(action)
-            #   nextx, nexty = int(x + dx), int(y + dy)
-            #   hitsWall = self.walls[nextx][nexty]
-
-            "*** YOUR CODE HERE ***"
+            dx, dy  = Actions.directionToVector(action)
+            nextx, nexty = int(x + dx), int(y + dy);
+            hitsWall = self.walls[nextx][nexty];
+            if (not hitsWall):
+                newPosition = (nextx, nexty);
+                newMinifiedState = GetNewMinifiedStateWithNewPosition(state, newPosition, self.corners);
+                successors.append((newMinifiedState, action, 1.0));
 
         self._expanded += 1 # DO NOT CHANGE
-        return successors
+        return successors;
 
     def getCostOfActions(self, actions):
         """
