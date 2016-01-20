@@ -24,7 +24,7 @@ class StateWithHistory:
     def __init__(self, movementHistory, lastCoordinates, accumulatedCost):
         self.movementHistory = movementHistory;
         self.lastCoordinates = lastCoordinates;
-        self.hashableState = str(self.lastCoordinates[0]) + "-" + str(self.lastCoordinates[1]);
+        self.hashableState = self.lastCoordinates;
         self.accumulatedCost = accumulatedCost;
 
     def getMovementHistory(self):
@@ -116,38 +116,40 @@ def SolveUsingDataStructure(problem, dataStructure, withCosts):
         return [];
 
     l = set(); # To keep track of visited states
+    l.add(startState);
 
     # push successors of the start state
     firstSuccessors = problem.getSuccessors(startState);
     for successor in firstSuccessors:
-        if (not successor in l):
-            successorStateWithHistory = GetStateWithHistoryFromState(None, successor);
+        successorStateWithHistory = GetStateWithHistoryFromState(None, successor);
+        hashableState = successorStateWithHistory.getHashableState()
+        if (not hashableState in l):
             if (not withCosts):
                 dataStructure.push(successorStateWithHistory);
             else:
                 dataStructure.push(successorStateWithHistory, successorStateWithHistory.getAccumulatedCost());
-            l.add(successorStateWithHistory.getHashableState());
 
-    l.add(str(startState[0]) +  "-" + str(startState[1]));
 
     while not dataStructure.isEmpty():
         # Process the current item
-        currentState = dataStructure.pop();
+        currentStateWithHistory = dataStructure.pop();
+        hashableState = currentStateWithHistory.getHashableState()
 
-        currentStateCoordinates = currentState.getLastCoordinates();
-        if (problem.isGoalState(currentStateCoordinates)):
-            return currentState.getMovementHistory();
-        # Put successors in the data structure
-        successors = problem.getSuccessors(currentStateCoordinates);
-        for successor in successors:
-            successorStateWithHistory = GetStateWithHistoryFromState(currentState, successor);
-            hashableState = successorStateWithHistory.getHashableState()
-            if (not hashableState in l):
+        # Only do work here if we have not processed this state
+        if (not hashableState in l):
+            l.add(hashableState);
+
+            currentStateCoordinates = currentStateWithHistory.getLastCoordinates();
+            if (problem.isGoalState(currentStateCoordinates)):
+                return currentStateWithHistory.getMovementHistory();
+            # Put successors in the data structure
+            successors = problem.getSuccessors(currentStateCoordinates);
+            for successor in successors:
+                successorStateWithHistory = GetStateWithHistoryFromState(currentStateWithHistory, successor);
                 if (not withCosts):
                     dataStructure.push(successorStateWithHistory);
                 else:
                     dataStructure.push(successorStateWithHistory, successorStateWithHistory.getAccumulatedCost());
-                l.add(hashableState);
 
     # Should never get here unless there is no solution!
     return [];
