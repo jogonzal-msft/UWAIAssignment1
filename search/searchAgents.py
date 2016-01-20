@@ -296,7 +296,7 @@ class CornersProblem(search.SearchProblem):
         self.walls = startingGameState.getWalls()
         self.startingPosition = startingGameState.getPacmanPosition()
         top, right = self.walls.height-2, self.walls.width-2
-        self.corners = ((1,1), (1,top), (right, 1), (right, top))
+        self.corners = ((1,1), (1,top), (right, top), (right, 1))
         for corner in self.corners:
             if not startingGameState.hasFood(*corner):
                 print 'Warning: no food in corner ' + str(corner)
@@ -366,6 +366,11 @@ class CornersProblem(search.SearchProblem):
         return len(actions)
 
 
+def CalculateManhattanDistance(point1, point2):
+    return abs(point1[0] - point2[0]) + abs(point1[1] - point2[1])
+    pass
+
+
 def cornersHeuristic(state, problem):
     """
     A heuristic for the CornersProblem that you defined.
@@ -382,8 +387,41 @@ def cornersHeuristic(state, problem):
     corners = problem.corners # These are the corner coordinates
     walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
 
-    "*** YOUR CODE HERE ***"
-    return 0 # Default to trivial solution
+    # A simple heuristic that can be used here is:
+    # 1. The manhattan to the closest point corner with food
+    # 2. If there are still other corners, add the minimum of the width/height of the square
+    #    times the number of remaining dots
+    total = 0;
+    currentPosition = state[0];
+    currentCornerFoods = state[1];
+
+    # Get an array of the remaining corners
+    remainingCorners = [];
+    for i in range(0,4):
+        cornerFood = currentCornerFoods[i];
+        if cornerFood:
+            remainingCorners.append(problem.corners[i]);
+
+    # If the remaining number is 0, then return 0
+    if (len(remainingCorners) == 0):
+        return 0;
+
+    # Get the closest corner (manhattan distance)
+    closestCorner = None;
+    closestDistance = -1;
+    for corner in remainingCorners:
+        localDistance = CalculateManhattanDistance(corner, currentPosition);
+        if (closestDistance == -1 or localDistance < closestDistance):
+            closestCorner = corner;
+            closestDistance = localDistance;
+
+
+    # Get the minimum of the height and width of the map, then multiply it by the remaining corners
+    top, right = problem.walls.height-2, problem.walls.width-2
+    minWallDistanceToTravel = min(top, right) - 1;
+    wallDistanceToTravelDueToRemainingCorners = (len(remainingCorners) - 1) * minWallDistanceToTravel;
+
+    return closestDistance + wallDistanceToTravelDueToRemainingCorners;
 
 class AStarCornersAgent(SearchAgent):
     "A SearchAgent for FoodSearchProblem using A* and your foodHeuristic"
