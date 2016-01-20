@@ -19,6 +19,21 @@ Pacman agents (in searchAgents.py).
 
 import util
 
+class StateWithHistory:
+    "A container class for solving DFS/etc problems."
+    def __init__(self, movementHistory, lastCoordinates):
+        self.movementHistory = movementHistory;
+        self.lastCoordinates = lastCoordinates;
+        self.hashableState = str(self.lastCoordinates[0]) + "-" + str(self.lastCoordinates[1]);
+    def getMovementHistory(self):
+        return self.movementHistory;
+
+    def getLastCoordinates(self):
+        return self.lastCoordinates;
+
+    def getHashableState(self):
+        return self.hashableState;
+
 class SearchProblem:
     """
     This class outlines the structure of a search problem, but doesn't implement
@@ -72,6 +87,58 @@ def tinyMazeSearch(problem):
     w = Directions.WEST
     return  [s, s, w, s, w, w, s, w]
 
+
+def GetStateWithHistoryFromState(currentState, newState):
+    if (currentState == None):
+        movementHistory = [];
+    else:
+        movementHistory = list(currentState.getMovementHistory());
+
+    movementHistory.append(newState[1]);
+    coordinates = newState[0];
+
+    return StateWithHistory(movementHistory, coordinates);
+
+
+def SolveUsingDataStructure(problem, dataStructure):
+
+    startState = problem.getStartState();
+    # Check if we're done
+    if (problem.isGoalState(startState)):
+        return [];
+
+    l = set(); # To keep track of visited states
+
+    # push successors of the start state
+    firstSuccessors = problem.getSuccessors(startState);
+    for successor in firstSuccessors:
+        if (not successor in l):
+            successorStateWithHistory = GetStateWithHistoryFromState(None, successor);
+            dataStructure.push(successorStateWithHistory);
+            l.add(successorStateWithHistory.getHashableState());
+
+    l.add(str(startState[0]) +  "-" + str(startState[1]));
+
+    while not dataStructure.isEmpty():
+        # Process the current item
+        currentState = dataStructure.pop();
+
+        currentStateCoordinates = currentState.getLastCoordinates();
+        if (problem.isGoalState(currentStateCoordinates)):
+            return currentState.getMovementHistory();
+        # Put successors in the data structure
+        successors = problem.getSuccessors(currentStateCoordinates);
+        for successor in successors:
+            successorStateWithHistory = GetStateWithHistoryFromState(currentState, successor);
+            hashableState = successorStateWithHistory.getHashableState()
+            if (not hashableState in l):
+                dataStructure.push(successorStateWithHistory);
+                l.add(hashableState);
+
+    # Should never get here unless there is no solution!
+    return [];
+
+
 def depthFirstSearch(problem):
     """
     Search the deepest nodes in the search tree first.
@@ -79,15 +146,8 @@ def depthFirstSearch(problem):
     Your search algorithm needs to return a list of actions that reaches the
     goal. Make sure to implement a graph search algorithm.
 
-    To get started, you might want to try some of these simple commands to
-    understand the search problem that is being passed in:
-
-    print "Start:", problem.getStartState()
-    print "Is the start a goal?", problem.isGoalState(problem.getStartState())
-    print "Start's successors:", problem.getSuccessors(problem.getStartState())
     """
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    return SolveUsingDataStructure(problem, util.Stack());
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
