@@ -485,6 +485,23 @@ class AStarFoodSearchAgent(SearchAgent):
         self.searchFunction = lambda prob: search.aStarSearch(prob, foodHeuristic)
         self.searchType = FoodSearchProblem
 
+
+def DoesNotHaveFood(coordinates, foodGrid):
+    if (coordinates[0] < foodGrid.width and coordinates[1] < foodGrid.height):
+        return not foodGrid[coordinates[0]][coordinates[1]];
+    return True;
+
+def FoodIsIsolated(foodGrid, coordinates):
+    up = (coordinates[0], coordinates[1] + 1);
+    down = (coordinates[0], coordinates[1] - 1);
+    left = (coordinates[0] + 1, coordinates[1]);
+    right = (coordinates[0] - 1, coordinates[1]);
+
+    if (DoesNotHaveFood(up, foodGrid) and DoesNotHaveFood(down, foodGrid) and DoesNotHaveFood(left, foodGrid) and DoesNotHaveFood(right, foodGrid)):
+        return True;
+
+    return False;
+
 def foodHeuristic(state, problem):
     """
     Your heuristic for the FoodSearchProblem goes here.
@@ -515,8 +532,15 @@ def foodHeuristic(state, problem):
     """
     position, foodGrid = state
 
+    # Search for the number of dots and the path to the nearest dot - then add those
     numberOfDots = 0;
     smallestManhattanDistance = -1;
+    numberOfIsolatedDots = 0;
+    isolatedDots = [];
+    minimumX = -1;
+    minimumY = -1;
+    maximumX = -1;
+    maximumY = -1;
     for c in range(0, foodGrid.width):
         for r in range(0, foodGrid.height):
             value = foodGrid[c][r];
@@ -525,11 +549,48 @@ def foodHeuristic(state, problem):
                 manhattanDistance = CalculateManhattanDistance(position, (c, r));
                 if (smallestManhattanDistance == -1 or manhattanDistance < smallestManhattanDistance):
                     smallestManhattanDistance = manhattanDistance;
+                isIsolated = FoodIsIsolated(foodGrid, (c, r));
+                if (isIsolated):
+                    numberOfIsolatedDots = numberOfIsolatedDots + 1;
+                    isolatedDots.append((c, r));
+                if (minimumX == -1 or minimumX > c):
+                    minimumX = c;
+                if (maximumX == -1 or maximumX < c):
+                    maximumX = c;
+                if (minimumY == -1 or minimumY > r):
+                    minimumY = r;
+                if (maximumY == -1 or maximumY < r):
+                    maximumY = r;
 
     if (numberOfDots == 0):
         return 0;
 
-    return numberOfDots + smallestManhattanDistance - 1;
+    numberOfIsolatedDotsContribution = 0;
+    if (numberOfIsolatedDots >= 2):
+        #numberOfIsolatedDotsContribution = numberOfDots - 2;
+
+        isolatedDotsDistances = [];
+        for dot in isolatedDots:
+            smallestIsolatedDotDistance = -1;
+            for c in range(0, foodGrid.width):
+                for r in range(0, foodGrid.height):
+                    if ((dot[0] != c or dot[1] != r) and foodGrid[c][r]):
+                        isolatedDotDistance = CalculateManhattanDistance((c, r), dot);
+                        if (smallestIsolatedDotDistance == -1 or isolatedDotDistance < smallestIsolatedDotDistance):
+                            smallestIsolatedDotDistance = isolatedDotDistance;
+            isolatedDotsDistances.append(smallestIsolatedDotDistance - 1);
+        isolatedDotsDistances.sort();
+        # return the sum of all the distances but the biggest one
+        isolatedDotsDistances.pop();
+        numberOfIsolatedDotsContribution += sum(isolatedDotsDistances);
+
+    # Additionally, if we have mora than one isolated dot, it will cost us more to do stuff
+
+    calculated1 = numberOfDots + smallestManhattanDistance - 1 + numberOfIsolatedDotsContribution;
+
+    calculated2 = CalculateManhattanDistance((minimumX, minimumY), (maximumX, maximumY));
+
+    return max(calculated1, calculated2 - 1);
 
 class ClosestDotSearchAgent(SearchAgent):
     "Search for all food using a sequence of searches"
