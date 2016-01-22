@@ -590,7 +590,8 @@ def foodHeuristic(state, problem):
 
     calculated2 = CalculateManhattanDistance((minimumX, minimumY), (maximumX, maximumY));
 
-    return max(calculated1, calculated2 - 1);
+    # return the max of both heuristics
+    return max(calculated1, calculated2);
 
 class ClosestDotSearchAgent(SearchAgent):
     "Search for all food using a sequence of searches"
