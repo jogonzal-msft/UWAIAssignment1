@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7b0d31c-f748-427c-804d-e99032d65276" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/search/commands.txt" afterPath="$PROJECT_DIR$/search/commands.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/search/searchAgents.py" afterPath="$PROJECT_DIR$/search/searchAgents.py" />
     </list>
     <ignored path="UWAIAssignment1.iws" />
@@ -16,9 +17,9 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/UWAIAssignment1$pacman.coverage" NAME="pacman Coverage Results" MODIFIED="1453284594914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/search" />
+    <SUITE FILE_PATH="coverage/UWAIAssignment1$pacman.coverage" NAME="pacman Coverage Results" MODIFIED="1453447895179" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/search" />
     <SUITE FILE_PATH="coverage/UWAIAssignment1$Command.coverage" NAME="Command Coverage Results" MODIFIED="1453262705162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/UWAIAssignment1$autograder.coverage" NAME="autograder Coverage Results" MODIFIED="1453284984717" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/search" />
+    <SUITE FILE_PATH="coverage/UWAIAssignment1$autograder.coverage" NAME="autograder Coverage Results" MODIFIED="1453447658858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/search" />
     <SUITE FILE_PATH="coverage/UWAIAssignment1$Doctests_in_eightpuzzle.coverage" NAME="Doctests in eightpuzzle Coverage Results" MODIFIED="1453271553376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/search" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -31,6 +32,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="commands.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/search/commands.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.47692308">
+              <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="search.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/search/search.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -41,11 +52,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="searchAgents.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="searchAgents.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/search/searchAgents.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7225131">
-              <caret line="417" column="0" selection-start-line="417" selection-start-column="0" selection-end-line="417" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="526" column="55" selection-start-line="526" selection-start-column="55" selection-end-line="526" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="searchTestClasses.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/search/searchTestClasses.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="393" column="0" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -58,18 +79,6 @@
               <caret line="202" column="8" selection-start-line="202" selection-start-column="8" selection-end-line="202" selection-end-column="8" />
               <folding>
                 <element signature="e#1979#2009#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="game.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/search/game.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="336" column="45" selection-start-line="336" selection-start-column="45" selection-end-line="336" selection-end-column="45" />
-              <folding>
-                <element signature="e#1051#1069#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -90,16 +99,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="graph_backtrack.test" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/search/test_cases/q1/graph_backtrack.test">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -134,9 +133,9 @@
         <option value="$PROJECT_DIR$/search/Command.py" />
         <option value="$PROJECT_DIR$/search/util.py" />
         <option value="$PROJECT_DIR$/search/StateWithHistory.py" />
-        <option value="$PROJECT_DIR$/search/commands.txt" />
         <option value="$PROJECT_DIR$/search/search.py" />
         <option value="$PROJECT_DIR$/search/searchAgents.py" />
+        <option value="$PROJECT_DIR$/search/commands.txt" />
       </list>
     </option>
   </component>
@@ -146,10 +145,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="-1928" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -242,7 +241,7 @@
       <recent name="C:\Users\jogonzal\Documents\GitHub\UWAIAssignment1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.autograder">
+  <component name="RunManager" selected="Python.pacman">
     <configuration default="false" name="pacman" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -257,7 +256,7 @@
       <module name="UWAIAssignment1" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/search/pacman.py" />
-      <option name="PARAMETERS" value="-l mediumCorners -p AStarCornersAgent -z 0.5" />
+      <option name="PARAMETERS" value="-l trickySearch -p AStarFoodSearchAgent --frameTime 1" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
@@ -518,8 +517,8 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.autograder" />
-        <item index="1" class="java.lang.String" itemvalue="Python.pacman" />
+        <item index="0" class="java.lang.String" itemvalue="Python.pacman" />
+        <item index="1" class="java.lang.String" itemvalue="Python.autograder" />
         <item index="2" class="java.lang.String" itemvalue="Python tests.Doctests in eightpuzzle" />
         <item index="3" class="java.lang.String" itemvalue="Python.Command" />
       </list>
@@ -547,14 +546,14 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-1928" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36469343" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3639775" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -562,7 +561,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39957717" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3545966" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -597,7 +596,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="92" />
+      <option name="time" value="96" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -728,22 +727,6 @@
             <element signature="e#19962#20395#0" expanded="false" />
             <element signature="e#20442#20839#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/search/commands.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52592593">
-          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/search/searchTestClasses.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -883,6 +866,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/search/search.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search/searchTestClasses.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="393" column="0" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search/test_cases/q7/food_heuristic_grade_tricky.test">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4378788">
+          <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search/game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66818184">
+          <caret line="192" column="38" selection-start-line="192" selection-start-column="38" selection-end-line="192" selection-end-column="38" />
+          <folding>
+            <element signature="e#1051#1069#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/search/pacman.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -893,28 +910,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/search/game.py">
+    <entry file="file://$PROJECT_DIR$/search/searchAgents.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="336" column="45" selection-start-line="336" selection-start-column="45" selection-end-line="336" selection-end-column="45" />
-          <folding>
-            <element signature="e#1051#1069#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/search/search.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+          <caret line="526" column="55" selection-start-line="526" selection-start-column="55" selection-end-line="526" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/search/searchAgents.py">
+    <entry file="file://$PROJECT_DIR$/search/commands.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7225131">
-          <caret line="417" column="0" selection-start-line="417" selection-start-column="0" selection-end-line="417" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.47692308">
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
           <folding />
         </state>
       </provider>

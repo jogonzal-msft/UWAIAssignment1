@@ -514,8 +514,22 @@ def foodHeuristic(state, problem):
     problem.heuristicInfo['wallCount']
     """
     position, foodGrid = state
-    "*** YOUR CODE HERE ***"
-    return 0
+
+    numberOfDots = 0;
+    smallestManhattanDistance = -1;
+    for c in range(0, foodGrid.width):
+        for r in range(0, foodGrid.height):
+            value = foodGrid[c][r];
+            if (value):
+                numberOfDots = numberOfDots + 1;
+                manhattanDistance = CalculateManhattanDistance(position, (c, r));
+                if (smallestManhattanDistance == -1 or manhattanDistance < smallestManhattanDistance):
+                    smallestManhattanDistance = manhattanDistance;
+
+    if (numberOfDots == 0):
+        return 0;
+
+    return numberOfDots + smallestManhattanDistance - 1;
 
 class ClosestDotSearchAgent(SearchAgent):
     "Search for all food using a sequence of searches"
